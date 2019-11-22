@@ -48,7 +48,7 @@ class AuthController extends Controller
         //rules for validation of fields
         $rules = [
             'email' => 'email|required',  
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ];
 
         //run the validator
@@ -60,9 +60,9 @@ class AuthController extends Controller
                 return response(['message'=>'Invalid credentials']);
             }
 
-            $accessToken = $auth()->user()->createToken('authToken')->accessToken;
+            $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
-            return response(['user'=> $auth()->user(), 'access_token'=>$accessToken]);
+            return response(['user'=> auth()->user(), 'access_token'=>$accessToken]);
         }
         else{
             return $validator->errors()->all();
