@@ -6,14 +6,34 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use GuzzleHttp\Client;
 //use GuzzleHttp\Psr7\Request;
+use Validator;
+use App\User;
 
 class AuthController extends Controller
 {
     public function register(Request $request){
-        $validatedData = $request->validate([
+        //json_decode() is used to decode a json string to an array/data object. json_encode() creates a json string from an array or data
+        $data = json_decode(json_encode($request->all()), true);
+
+        //rules for validation of fields
+        $rules = [
             'email' => 'email|required',  
             'password' => 'required|confirmed'
-        ]);
+        ];
+
+        //run the validator
+        $validator = Validator::make($data, $rules);
+
+        if($validator->passes()){
+            //create user
+            $user = User::create($data);
+
+            $accessToken = $user->createToken('authToken')->accessToken;
+
+            return response(['user'=> $user, 'access_token'=>$accessToken]);
+        }else{
+            return $validator->errors()->all();
+        }
 
         //User::create($validatedData);
         return "Successful";

@@ -22,3 +22,4 @@ Route::post('login', 'AuthController@login');
 
 Route::get('blogs', 'BlogController@index');
 Route::get('blog/{id}', 'BlogController@view');
+Route::post('blog/create', 'BlogController@create');

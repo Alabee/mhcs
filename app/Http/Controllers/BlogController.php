@@ -31,10 +31,11 @@ class BlogController extends Controller
     	//fill the fields
     	$blog->title = $request->input('title');
     	$blog->body = $request->input('body');
-    	//$blog->author = $request->input('author');
+    	$blog->author = $request->input('author');
+        $blog->author_id = $request->input('author_id');
 
     	if($blog->save()){
-    		return BlogResource($blog);
+    		return new BlogResource($blog);
     	}
     }
 
@@ -45,7 +46,9 @@ class BlogController extends Controller
     	//fill the fields
     	$blog->title = $request->input('title');
     	$blog->body = $request->input('body');
-    	//$blog->author = $request->input('author');
+    	$blog->author = $request->input('author');
+        $blog->author_id = $request->input('author_id');
+
 
     	if($blog->save()){
     		return BlogResource($blog);
