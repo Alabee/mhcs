@@ -10,6 +10,13 @@ use GuzzleHttp\Client;
 class AuthController extends Controller
 {
     public function register(Request $request){
+        $validatedData = $request->validate([
+            'email' => 'email|required',  
+            'password' => 'required|confirmed'
+        ]);
+
+        //User::create($validatedData);
+        return "Successful";
 
     }
     

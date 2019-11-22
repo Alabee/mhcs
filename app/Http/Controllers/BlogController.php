@@ -21,7 +21,7 @@ class BlogController extends Controller
     	$blog = Blog::findorFail($id);
 
     	//return single blog as a resource
-    	return BlogResource($blog);
+    	return new BlogResource($blog);
     }
 
     public function create(Request $request){

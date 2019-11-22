@@ -17,9 +17,10 @@ class Blog extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'body' => $this->body,
+            'blogPost' => $this->body,
             'author_id' => $this->author_id,
-            'author' => $this->author,
+            'user' => $this->author,
+            'webFormatUrl' => "https://cdn.pixabay.com/photo/2013/10/15/09/12/flower-195893_960_720.jpg",
 
         ];
     }
