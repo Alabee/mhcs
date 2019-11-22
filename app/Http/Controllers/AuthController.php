@@ -9,8 +9,11 @@ use GuzzleHttp\Client;
 
 class AuthController extends Controller
 {
+    public function register(Request $request){
 
-	public function register(Request $request){
+    }
+    
+	public function register_test(Request $request){
 		//return $request->input('email');
 
 		$client = new Client();

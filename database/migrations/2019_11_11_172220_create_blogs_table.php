@@ -19,7 +19,6 @@ class CreateBlogsTable extends Migration
             $table->text('body');
             $table->string('author');
             $table->unsignedBigInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
