@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resource\Blog as BlogResource;
+use App\Http\Resources\Blog as BlogResource;
 use App\Blog;
 
 class BlogController extends Controller
@@ -22,5 +22,33 @@ class BlogController extends Controller
 
     	//return single blog as a resource
     	return BlogResource($blog);
+    }
+
+    public function create(Request $request){
+    	//create object for blog
+    	$blog = new Blog();
+ 
+    	//fill the fields
+    	$blog->title = $request->input('title');
+    	$blog->body = $request->input('body');
+    	//$blog->author = $request->input('author');
+
+    	if($blog->save()){
+    		return BlogResource($blog);
+    	}
+    }
+
+    public function update(Request $request){
+    	//create object for blog
+    	$blog = Blog::findorFail($request->input('blog_id  '));
+
+    	//fill the fields
+    	$blog->title = $request->input('title');
+    	$blog->body = $request->input('body');
+    	//$blog->author = $request->input('author');
+
+    	if($blog->save()){
+    		return BlogResource($blog);
+    	}
     }
 }
