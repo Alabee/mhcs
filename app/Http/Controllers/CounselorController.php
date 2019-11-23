@@ -38,6 +38,8 @@ class CounselorController extends Controller
         	$counselor->phoneNumber = $request->input('phoneNumber');
         	$counselor->bio = $request->input('bio');
         	$counselor->profileImage = "image.jpg";
+            $counselor->user_id = auth()->user()->id;
+
 
         	if($counselor->save()){
         		return response(['user'=> auth()->user(), 'counselor'=> $counselor]);

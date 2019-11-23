@@ -38,6 +38,7 @@ class CounseleeController extends Controller
         	$counselee->name = $request->input('name');
         	$counselee->phoneNumber = $request->input('phoneNumber');
         	$counselee->profileImage = "image.jpg";
+            $counselee->user_id = auth()->user()->id;
 
         	if($counselee->save()){
         		return response(['user'=> auth()->user(), 'counselee'=> $counselee]);

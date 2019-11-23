@@ -19,6 +19,8 @@ class CreateCounselorsTable extends Migration
             $table->text('bio');
             $table->string('phoneNumber');
             $table->string('profileImage');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

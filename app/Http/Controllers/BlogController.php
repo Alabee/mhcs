@@ -28,11 +28,21 @@ class BlogController extends Controller
     	//create object for blog
     	$blog = new Blog();
  
+        if(auth()->user()->role == "counselor"){
+            $author = auth()->user()->counselor->name;
+        }
+        elseif(auth()->user()->role == "counselee"){
+            $author = auth()->user()->counselee->name;
+        }
+        else{
+            $author = "Anonymous";
+        }
+
     	//fill the fields
     	$blog->title = $request->input('title');
     	$blog->body = $request->input('body');
-    	$blog->author = $request->input('author');
-        $blog->author_id = $request->input('author_id');
+    	$blog->author = $author;
+        $blog->user_id = auth()->user()->id;
 
     	if($blog->save()){
     		return new BlogResource($blog);
