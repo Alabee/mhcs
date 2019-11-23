@@ -24,6 +24,9 @@ Route::post('login', 'AuthController@login');
 
 //The following routes are protected by Passport. Therefore, the API consumers should specify their access token as a Bearer token in the Authorization header of their request.
 Route::group(['middleware' => ['auth:api']], function(){
+	//Role endpoint
+	Route::post('role', 'AuthController@role');
+
 	//Blog management endpoints for both counselor and counselee
 	Route::get('blogs', 'BlogController@index');
 	Route::get('blog/{id}', 'BlogController@view');
@@ -35,11 +38,15 @@ Route::group(['middleware' => ['auth:api']], function(){
 
 	Route::post('counselee/profile_save', 'CounseleeController@profileSave');
 	Route::get('counselee/profile', 'CounseleeController@profile');
-	
+
 	Route::get('counselee/view_counselors', 'CounseleeController@viewCounselors');
 	Route::get('counselee/view_counselor/{id}', 'CounseleeController@viewCounselor');
 
 
+
+	//Counselor endpoints
+	Route::post('counselor/profile_save', 'CounselorController@profileSave');
+	Route::get('counselor/profile', 'CounselorController@profile');
 });
 
 

@@ -71,7 +71,16 @@ class AuthController extends Controller
         }
     }
     
+    public function role(Request $request){
+        //find user
+        $user = auth()->user();
 
+        $user->role = $request->input('role');
+
+        if($user->save()){
+            return response(['user' => $user]);
+        }
+    }
     
 	public function register_test(Request $request){
 		//return $request->input('email');
