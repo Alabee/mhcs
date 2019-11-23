@@ -13,4 +13,6 @@ class CounselorController extends Controller
     public function profile_save(Request $request){
     	return "Working";
     }
+
+    
 }

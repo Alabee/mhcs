@@ -41,7 +41,7 @@ class BlogController extends Controller
 
     public function update(Request $request){
     	//create object for blog
-    	$blog = Blog::findorFail($request->input('blog_id  '));
+    	$blog = Blog::findorFail($request->input('blog_id'));
 
     	//fill the fields
     	$blog->title = $request->input('title');

@@ -30,6 +30,7 @@ class AuthController extends Controller
             //create user
             $user = User::create($data);
 
+            //generate access token for client
             $accessToken = $user->createToken('authToken')->accessToken;
 
             return response(['user'=> $user, 'access_token'=>$accessToken]);
@@ -60,6 +61,7 @@ class AuthController extends Controller
                 return response(['message'=>'Invalid credentials']);
             }
 
+            //generate access token for client
             $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
             return response(['user'=> auth()->user(), 'access_token'=>$accessToken]);
@@ -68,6 +70,8 @@ class AuthController extends Controller
             return $validator->errors()->all();
         }
     }
+    
+
     
 	public function register_test(Request $request){
 		//return $request->input('email');
